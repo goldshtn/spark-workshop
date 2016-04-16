@@ -24,7 +24,7 @@ ___
 
 #### Task 2: Inspecting the Lab Data Files
 
-In this lab, you will implement a multi-file word count. The texts you will use are freely available books from [Project Guthenberg](http://www.gutenberg.org), including classics such as Lewis Carroll's "Alice in Wonderland" and Jane Austin's "Pride and Prejudice".
+In this lab, you will implement a multi-file word count. The texts you will use are freely available books from [Project Gutenberg](http://www.gutenberg.org), including classics such as Lewis Carroll's "Alice in Wonderland" and Jane Austin's "Pride and Prejudice".
 
 Take a look at some of the text files in the `~/data` directory. From the terminal, run:
 
