@@ -45,7 +45,7 @@ if __name__ == "__main__":
     run()
 ```
 
-> Which editor should you use in the VirtualBox appliance? If you want to get into the spirit of the course, you could use `vim`, but if you're looking for something more user-friendly, use `gedit`.
+> Which editor should you use in the VirtualBox appliance? If you want to get into the spirit of the course, you could use `vim`, but if you're looking for something more user-friendly, use `gedit`. There's also an installation of PyCharm Community Edition, which is a full-blown Python IDE by JetBrains.
 
 To make sure everything's fine so far, run your Python program from a terminal window:
 
