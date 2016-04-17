@@ -18,6 +18,8 @@ ____
 
 1. [Lab 6 - PageRank over Movie References](lab6-pagerank.md)
 
+1. [Lab 7 - Plagiarism Detection](lab7-plagiarism.md)
+
 ____
 
 Copyright (C) Sasha Goldshtein, 2016. All rights reserved.
