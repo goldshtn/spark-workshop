@@ -10,7 +10,7 @@ ____
 
 1. [Lab 2 - Analyzing Flight Delays](lab2-airlines.md)
 
-1. [Lab 3 - Analyzing Startup Companies](lab3-companies.md)
+1. [Lab 3 - Analyzing Startup Companies](lab3-startups.md)
 
 1. [Lab 4 - Analyzing UK Property Prices](lab4-propprices.md)
 
