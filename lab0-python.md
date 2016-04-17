@@ -100,7 +100,8 @@ def squares(numbers):
     return map(lambda n: n * n, numbers)
 
 def avg_length(words):
-    reduce(lambda sum, word: sum + len(word), words, 0) / float(len(words))
+    return reduce(lambda sum, word: sum + len(word), words, 0) / \
+           float(len(words))
 
 def problem6():
     def _sum(numbers):
