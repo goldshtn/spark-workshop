@@ -82,4 +82,4 @@ ___
 
 #### Discussion
 
-Now that you have experience in working with Spark SQL and `DataFrames`, what are the advantages and disadvantages of using it compared to the core RDD functionality (such as `map`, `filter`, `reduceByKey`, and so on)? Consider which approach produces more maintainable code, offers more opportunities for optimization, makes it easier to solve certain problems, and so on.
+See discussion for the [next lab](lab4-propprices.md).
