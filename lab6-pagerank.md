@@ -1,4 +1,4 @@
-### Lab 5: Movie PageRank
+### Lab 6: Movie PageRank
 
 In this lab, you will run the [PageRank](https://en.wikipedia.org/wiki/PageRank) algorithm on a dataset of movie references, and try to identify the most popular movies based on how many references they have. The dataset you'll be working with is [provided by IMDB](http://www.imdb.com/interfaces).
 
