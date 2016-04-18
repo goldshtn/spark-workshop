@@ -77,6 +77,8 @@ flights = rdd.filter(lambda line: line != headerline)       \
 flights.persist()
 ```
 
+___
+
 #### Task 3: Querying Flights and Delays
 
 Now that you have the flight objects, it's time to perform a few queries and gather some useful information. Suppose you're in Boston, MA. Which airline has the most flights departing from Boston?
