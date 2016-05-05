@@ -69,6 +69,8 @@ export ZEPPELIN_PORT=9995
 # export SPARK_SUBMIT_OPTIONS
 EOF'
 
+sudo ufw disable
+
 # start everything up
 sudo /usr/lib/spark/sbin/stop-master.sh
 sudo /usr/lib/spark/sbin/stop-slave.sh
