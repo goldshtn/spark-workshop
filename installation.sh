@@ -1,23 +1,20 @@
 # oracle java 8
-echo "\n" | sudo add-apt-repository ppa:webupd8team/java
+echo "\n" | sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update -y
-echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get install oracle-java8-installer oracle-java8-set-default -y
+sudo apt-get install -y openjdk-8-jdk
 
 # spark download and setup
-mkdir ~/downloads/
-wget http://apache.mivzakim.net/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz -O ~/downloads/spark-1.6.1.tgz
+wget https://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz -O /tmp/spark-1.6.1.tgz
 sudo ufw disable
 sudo mkdir /usr/lib/spark
-sudo tar -xf ~/downloads/spark-1.6.1.tgz --strip 1 -C /usr/lib/spark
+sudo tar -xf /tmp/spark-1.6.1.tgz --strip 1 -C /usr/lib/spark
 echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> ~/.bash_profile
 echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bash_profile
 echo "export SPARK_HOME=/usr/lib/spark" >> ~/.bash_profile
 echo "export PATH=\$SPARK_HOME/bin:\$PATH" >> ~/.bash_profile
 source ~/.bash_profile
 
-# spark lgo config
+# spark log config
 sudo rm /usr/lib/spark/conf/log4j.properties
 sudo touch /usr/lib/spark/conf/log4j.properties
 sudo bash -c 'cat << EOF > /usr/lib/spark/conf/log4j.properties
@@ -53,9 +50,9 @@ sudo mkdir /usr/lib/spark/logs/eventlog
 sudo chmod -R 777 /usr/lib/spark/logs
 
 # zeppelin setup
-wget http://apache.mivzakim.net/incubator/zeppelin/0.5.6-incubating/zeppelin-0.5.6-incubating-bin-all.tgz -O ~/downloads/zeppelin-0.5.6.tgz
+wget http://apache.mivzakim.net/incubator/zeppelin/0.5.6-incubating/zeppelin-0.5.6-incubating-bin-all.tgz -O /tmp/zeppelin-0.5.6.tgz
 sudo mkdir /usr/lib/zeppelin
-sudo tar -xf ~/downloads/zeppelin-0.5.6.tgz --strip 1 -C /usr/lib/zeppelin
+sudo tar -xf /tmp/zeppelin-0.5.6.tgz --strip 1 -C /usr/lib/zeppelin
 
 # zeppelin config
 sudo rm /usr/lib/zeppelin/conf/zeppelin-env.sh
