@@ -19,7 +19,7 @@ If you're using the instructor-provided VirtualBox appliance, you're all set.
 
 Open a terminal window navigate to Spark/bin and run `./spark-shell`. An interactive prompt similar to the following should appear:
 
-...
+```
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
@@ -28,20 +28,21 @@ Welcome to
       /_/
 
 Using Scala version 2.10.5 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_71)
-...
+
 
 SQL context available as sqlContext.
 
 scala>
-
+```
 
 This is the scala REPL -- Read, Eval, Print Loop environment. Try some basic commands to make sure everything works:
+```
 scala> 2+2
 res0: Int = 4
 
 scala> println("Hello")
 Hello
-
+```
 ___
 
 #### Task 2: Scala basics
@@ -53,29 +54,30 @@ is equivalent to: (1).+((2).*(3)) here we used unary numerical methods.
 Functions are objects. They can be passed into functions as arguments, stored in variable or return them from function.
 This is the core of the paradigm called "Functional programming".
 
-## 2.0: Object
+#### Object
+```
+Object ScalaBasics {
+  def Foo(bar: () => Unit) {
+    bar()
+  } 
+  
+  def Bar() {
+    println("This is Bar")
+  }
 
-1. Object ScalaBasics {
-2.	 def Foo(bar: () => Unit) {
-3.		bar()
-4.	 } 
-5.
-6.	 def Bar() {
-7.	 	println("This is Bar")
-8.	 }
-9.
-10.	 def main(args: Array[String]){
-11.	 	Foo(Bar)
-12.	 }
-13. }
+  def main(args: Array[String]){
+    Foo(Bar)
+  }
+}
+```
 
 * In first line we see "Object" keyword. This is declaration of class with a single instance (commonly known as singelton object). 
 * Function parameter declaration in line 2 "() => Unit" translated as: no input parameters and the function returns nothing (like void in C#)
 
-## 2.1: Variables (val vs. var)
+#### Variables (val vs. var)
 
  Both vals and vars must be initialized when defined, but only vars can be later reassigned to refer to a different object. Both are evaluated once.
-
+```
  val x = 3
  x: Int = 3
 
@@ -87,19 +89,22 @@ This is the core of the paradigm called "Functional programming".
 
  y = 6
  y: Int = 6
+```
 
-## 2.2: Case Class
+#### Case Class
 
 This is regular class that export constuctor parameters and provide a decomposition mechanism via "pattern matching"
+```
  abstract class Employee
  case class Worker(name: String, managerName: String) extends Employee
  case class Manager(name: String) extends Employee
+```
 
  The constuctor parameters can be accessed directly
+```
  val emp1 = Manager("Dan")
  emp1.name
    res0: String = Dan
-
 
  def IsWorkerOrManager(emp: Employee): String = {
  	val result = emp match {
@@ -118,16 +123,18 @@ This is regular class that export constuctor parameters and provide a decomposit
 IsWorkerOrManager(emp1)
 Manager: Dan
 res1: String = Manager
+```
 
-## 2.3: Tuples
+#### Tuples
 
  Tuples are collection of items not of the same types, but they are immutable. 
-
+```
 val t = (1, "Hello", 3.0)
 t: (Int, String, Double) = (1,Hello,3.0)
+```
 
 The access to elemets done by ._<index> of element.
-
+```
 scala> println(t._1)
 1
 
@@ -136,9 +143,10 @@ Hello
 
 scala> println(t._3)
 3.0
+```
 
-## 2.4: Lambda
-
+#### Lambda
+```
 def fun1 = (x: Int) => println(x)
 fun1(3)
 3
@@ -146,11 +154,12 @@ fun1(3)
 def f1 = () => "Hello"
 f1()
 res3: String = Hello
+```
 
-## 2.4: Using "_" (Underscore)
+#### Using "_" (Underscore)
 
 In Scala we can replace variables by "_"
-
+```
 val intList=List(1,2,3,4)
 intList.map(_ + 1) is equivalent to following: 
 intList.map(x => x + 1) 
@@ -158,11 +167,13 @@ res4: List[Int] = List(2, 3, 4, 5)
 
 intList.reduce(_ + _) is equivalent to following: 
 intList.reduce((acc, x) => acc + x)
+```
 
 In pattern matching the use of "_" is done when we do not care about the variable.
 Review of the match from 2.2:
 
-...
+```
+	...
  	emp match {
 	 	case Worker(name, _) => { 
 	 		println("Worker: " + name)
@@ -170,4 +181,6 @@ Review of the match from 2.2:
 	 	}
 	 	...
 	 }
+```
+
 We want to know the name of the worker, but we do not care about the name of manager.
