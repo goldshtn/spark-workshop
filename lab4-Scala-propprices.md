@@ -106,9 +106,7 @@ sqlContext.sql("""select   year(date) as yr, month(date) as mth, avg(price)
 
 
 
-Bonus: use the Python `matplotlib` module to plot the property price changes month-over-month across the entire dataset.
-
-> The `matplotlib` module is installed in the instructor-provided VirtualBox appliance. For your own system, follow the [installation instructions](http://matplotlib.org/users/installing.html).
+Bonus: use the %sql to plot the property price changes month-over-month across the entire dataset.
 
 **Solution**:
 
@@ -116,7 +114,7 @@ Bonus: use the Python `matplotlib` module to plot the property price changes mon
 %sql 
 select   year(date), month(date), avg(price) from     properties  group by year(date), month(date)  order by year(date), month(date)
 ```
-Open 'settings' and in 'Values' put '_c2' field
+Open `settings` and in `Values` put `_c2` field
 ___
 
 #### Discussion
