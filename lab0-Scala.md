@@ -170,7 +170,7 @@ intList.reduce((acc, x) => acc + x)
 ```
 
 In pattern matching the use of "_" is done when we do not care about the variable.
-Review of the match from 2.2:
+Review of the match from IsWorkerOrManager function.
 
 ```
 	...
@@ -181,6 +181,7 @@ Review of the match from 2.2:
 	 	}
 	 	...
 	 }
+	 ...
 ```
 
 We want to know the name of the worker, but we do not care about the name of manager.

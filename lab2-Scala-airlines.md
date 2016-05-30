@@ -64,8 +64,10 @@ val flightsDF = sqlContext.read
     .option("header", "true")      // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .load("file:///home/data/airline-delays.csv")
+```
 
 You can check the schema by printing it:
+```
 flightsDF.printSchema
 ```
 
