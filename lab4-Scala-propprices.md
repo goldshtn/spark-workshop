@@ -27,7 +27,6 @@ Then we need to import `com.databricks.spark.csv` as we did in Lab 2.
 ```scala
 %dep
 z.reset()
-z.addRepo("Spark Packages Repo").url("http://dl.bintray.com/spark-packages/maven")
 z.load("com.databricks:spark-csv_2.11:1.4.0")
 ```
 
@@ -40,7 +39,7 @@ import org.apache.spark.sql.types._
 val custSchema = StructType(Array(
     StructField("id",StringType,true), 
     StructField("price",IntegerType,true), 
-    StructField("date",TimestampType,true), 
+    StructField("date",StringType,true), 
     StructField("zip",StringType,true),
     StructField("type",StringType,true), 
     StructField("new",StringType,true), 
@@ -73,10 +72,10 @@ First, let's do some basic analysis on the data. Find how many records we have p
 **Solution**:
 
 ```Scala
-sqlContext.sql("""select   year(date), count(*)
+sqlContext.sql("""select   substring(date, 0, 4), count(*)
                   from     properties
-                  group by year(date)
-                  order by year(date)""").collect()
+                  group by substring(date, 0, 4)
+                  order by substring(date, 0, 4)""").collect()
 ```
 
 All right, so everyone knows that properties in London are expensive. Find the average property price by county, and print the top 10 most expensive counties.
@@ -96,12 +95,12 @@ Is there any trend for property sales during the year? Find the average property
 **Solution**:
 
 ```Scala
-sqlContext.sql("""select   year(date) as yr, month(date) as mth, avg(price)
+sqlContext.sql("""select  substring(date,0,4) as yr, substring(date,5,2) as mth, avg(price)
                   from     properties
                   where    county='GREATER LONDON'
-                  and      year(date) >= 2015
-                  group by year(date), month(date)
-                  order by year(date), month(date)""").collect()
+                  and       substring(date,0,4) >= 2015
+                  group by  substring(date,0,4), substring(date,5,2)
+                  order by  substring(date,0,4), substring(date,5,2)""").collect()
 ```
 
 

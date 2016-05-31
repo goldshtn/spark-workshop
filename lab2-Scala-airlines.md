@@ -51,7 +51,6 @@ Now go back to your note and run:
 ```scala
 %dep
 z.reset()
-z.addRepo("Spark Packages Repo").url("http://dl.bintray.com/spark-packages/maven")
 z.load("com.databricks:spark-csv_2.11:1.4.0")
 ```
 
