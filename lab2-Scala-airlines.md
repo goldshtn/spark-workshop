@@ -6,7 +6,7 @@ ___
 
 #### Task 1: Inspecting the Data
 
-This dataset ships with two files (in the `/home/data` directory, if you are using the instructor-provided VirtualBox appliance). First, the `airline-format.html` file contains a brief description of the dataset, and the various data fields. For example, the `ArrDelay` field is the flight's arrival delay, in minutes. Second, the `airline-delays.csv` file is a comma-separated collection of flight records, one record per line.
+This dataset ships with two files (in the `/home/vagrant/data` directory, if you are using the instructor-provided VirtualBox appliance). First, the `airline-format.html` file contains a brief description of the dataset, and the various data fields. For example, the `ArrDelay` field is the flight's arrival delay, in minutes. Second, the `airline-delays.csv` file is a comma-separated collection of flight records, one record per line.
 
 Inspect the fields described in the `airline-format.html` file. Make a note of fields that describe the flight, its origin and destination airports, and any delays encountered on departure and arrival.
 
@@ -62,7 +62,7 @@ val flightsDF = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true")      // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
-    .load("file:///home/data/airline-delays.csv")
+    .load("file:///home/vagrant/data/airline-delays.csv")
 ```
 
 You can check the schema by printing it:

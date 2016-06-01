@@ -6,10 +6,10 @@ ___
 
 #### Task 1: Inspecting the Data
 
-As always, we begin by inspecting the data, which is in the `/home/data/prop-prices.csv` file. Run the following command to take a look at some of the entries:
+As always, we begin by inspecting the data, which is in the `/home/vagrant/data/prop-prices.csv` file. Run the following command to take a look at some of the entries:
 
 ```
-head /home/data/prop-prices.csv
+head /home/vagrant/data/prop-prices.csv
 ```
 
 Note that this time, the CSV file does not have headers. To determine which fields are available, consult the [guidance page](https://www.gov.uk/guidance/about-the-price-paid-data).
@@ -57,7 +57,7 @@ val custSchema = StructType(Array(
 val df = sqlContext.read
     .format("com.databricks.spark.csv")
     .schema(custSchema)
-    .load("file:///home/data/prop-prices.csv")
+    .load("file:///home/vagrant/data/prop-prices.csv")
 
 df.registerTempTable("properties")
 df.persist()

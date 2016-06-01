@@ -20,10 +20,10 @@ ___
 
 In this lab, you will implement a multi-file word count. The texts you will use are freely available books from [Project Gutenberg](http://www.gutenberg.org), including classics such as Lewis Carroll's "Alice in Wonderland" and Jane Austin's "Pride and Prejudice".
 
-Take a look at some of the text files in the `~/data` directory. From the terminal, run:
+Take a look at some of the text files in the `/home/vagrant/data` directory. From the terminal, run:
 
 ```
-head -n 50 ~/data/*.txt | less
+head -n 50 /home/vagrant/data/*.txt | less
 ```
 
 This shows the first 50 lines of each file. Press SPACE to scroll, or `q` to exit `less`.
@@ -44,7 +44,7 @@ Your first task is to print out the number of lines in all the text files, combi
 **Solution**:
 
 ```scala
-sc.textFile("/data/books/*.tx").count()
+sc.textFile("file:///home/vagrant/data/*.txt").count()
 ```
 
 Great! Your next task is to implement the actual word-counting program. You've already seen one in class, and now it's time for your own. Print the top 10 most frequent words in the provided books.
@@ -52,7 +52,7 @@ Great! Your next task is to implement the actual word-counting program. You've a
 **Solution**:
 
 ```scala
-val lines = sc.textFile("/data/books/*.tx")
+val lines = sc.textFile("file:///home/vagrant/data/*.txt")
 val words = lines.flatMap(line => line.split(" ").filter(w => w != null && !w.isEmpty))
 val pairs = words.map(word => (word, 1))
 val freqs = pairs.reduceByKey((a, b) => a + b)
