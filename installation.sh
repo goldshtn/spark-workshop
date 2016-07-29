@@ -8,7 +8,7 @@ wget https://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz -O /tmp
 sudo ufw disable
 sudo mkdir -p /usr/lib/spark
 sudo tar -xf /tmp/spark-1.6.1.tgz --strip 1 -C /usr/lib/spark
-echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> ~/.bash_profile
+echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> ~/.bash_profile
 echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bash_profile
 echo "export SPARK_HOME=/usr/lib/spark" >> ~/.bash_profile
 echo "export PATH=\$SPARK_HOME/bin:\$PATH" >> ~/.bash_profile
@@ -59,7 +59,7 @@ sudo rm /usr/lib/zeppelin/conf/zeppelin-env.sh
 sudo touch /usr/lib/zeppelin/conf/zeppelin-env.sh
 sudo bash -c 'cat << EOF > /usr/lib/zeppelin/conf/zeppelin-env.sh
 #!/bin/bash
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export MASTER=spark://$(hostname):7077
 export SPARK_HOME=/usr/lib/spark
 export ZEPPELIN_PORT=9995
