@@ -6,7 +6,7 @@ sudo apt-get install -y openjdk-8-jdk
 # spark download and setup
 wget https://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz -O /tmp/spark-1.6.1.tgz
 sudo ufw disable
-sudo mkdir /usr/lib/spark
+sudo -p mkdir /usr/lib/spark
 sudo tar -xf /tmp/spark-1.6.1.tgz --strip 1 -C /usr/lib/spark
 echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> ~/.bash_profile
 echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bash_profile
@@ -46,13 +46,13 @@ spark.master                     spark://$(hostname):7077
 spark.eventLog.enabled           true
 spark.eventLog.dir               file:///usr/lib/spark/logs/eventlog
 EOF'
-sudo mkdir /usr/lib/spark/logs/eventlog
+sudo -p mkdir /usr/lib/spark/logs/eventlog
 sudo chmod -R 777 /usr/lib/spark/logs
 
 # zeppelin setup
 ZEPPLIN_URL=$(curl http://www.apache.org/dyn/closer.cgi/incubator/zeppelin/0.5.6-incubating/zeppelin-0.5.6-incubating-bin-all.tgz  |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' | head -1)
 wget $ZEPPLIN_URL -O /tmp/zeppelin-0.5.6.tgz
-sudo mkdir /usr/lib/zeppelin
+sudo -p mkdir /usr/lib/zeppelin
 sudo tar -xf /tmp/zeppelin-0.5.6.tgz --strip 1 -C /usr/lib/zeppelin
 
 # zeppelin config
