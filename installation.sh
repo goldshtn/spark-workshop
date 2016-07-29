@@ -50,10 +50,10 @@ sudo mkdir -p /usr/lib/spark/logs/eventlog
 sudo chmod -R 777 /usr/lib/spark/logs
 
 # zeppelin setup
-ZEPPLIN_URL=$(curl http://www.apache.org/dyn/closer.cgi/incubator/zeppelin/0.5.6-incubating/zeppelin-0.5.6-incubating-bin-all.tgz  |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' | head -1)
-wget $ZEPPLIN_URL -O /tmp/zeppelin-0.5.6.tgz
+ZEPPLIN_URL=$(curl http://www.apache.org/dyn/closer.cgi/zeppelin/zeppelin-0.6.0/zeppelin-0.6.0-bin-all.tgz  |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' | head -1)
+wget $ZEPPLIN_URL -O /tmp/zeppelin-0.6.0.tgz
 sudo mkdir -p /usr/lib/zeppelin
-sudo tar -xf /tmp/zeppelin-0.5.6.tgz --strip 1 -C /usr/lib/zeppelin
+sudo tar -xf /tmp/zeppelin-0.6.0.tgz --strip 1 -C /usr/lib/zeppelin
 
 # zeppelin config
 sudo rm /usr/lib/zeppelin/conf/zeppelin-env.sh
