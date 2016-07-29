@@ -63,7 +63,6 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export MASTER=spark://$(hostname):7077
 export SPARK_HOME=/usr/lib/spark
 export ZEPPELIN_PORT=9995
-# export SPARK_SUBMIT_OPTIONS
 EOF'
 
 sudo ufw disable
