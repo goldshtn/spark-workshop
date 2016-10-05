@@ -2,7 +2,7 @@
 
 The purpose of this lab is to make sure you are sufficiently acquainted with Python to succeed in the rest of the labs. If Python is one of your primary language, this should be smooth sailing; otherwise, please make sure you complete these tasks before moving on to the next labs.
 
-This lab assumes that you have Python 2.6+ installed on your system. If you're using the instructor-provided VirtualBox appliance, you're all set. Otherwise, please make sure that Python is installed and is in the path, so you can type `python` to launch it from a terminal window.
+This lab assumes that you have Python 2.6+ installed on your system. If you're using the instructor-provided appliance, you're all set. Otherwise, please make sure that Python is installed and is in the path, so you can type `python` to launch it from a terminal window.
 
 > If you're installing Python yourself, please install Python 2.x and not 3.x. Even though everything in these labs is supposed to work just fine with Python 3, a lot of libraries and frameworks still don't support it.
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     run()
 ```
 
-> Which editor should you use in the VirtualBox appliance? If you want to get into the spirit of the course, you could use `vim`, but if you're looking for something more user-friendly, use `gedit`. There's also an installation of PyCharm Community Edition, which is a full-blown Python IDE by JetBrains.
+> Which editor should you use in the appliance? If you want to get into the spirit of the course, you could use `vim`, but if you're looking for something more user-friendly, use `nano` or the built-in web-based editor.
 
 To make sure everything's fine so far, run your Python program from a terminal window:
 

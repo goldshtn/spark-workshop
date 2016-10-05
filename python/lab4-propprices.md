@@ -20,9 +20,9 @@ ___
 
 In a previous lab, we used the Python `csv` module to parse CSV files. However, because we're working with structured data, the Spark SQL framework can be easier to use and provide better performance. We are going to use the `pyspark_csv` third-party open source module to create a `DataFrame` from an RDD of CSV lines.
 
-> **NOTE**: The `pyspark_csv.py` file is in the `Downloads` directory on the VirtualBox appliance. You can also [download it yourself](https://github.com/seahboonsiew/pyspark-csv) and place it in some directory.
+> **NOTE**: The `pyspark_csv.py` file is in the `~/externals` directory on the appliance. You can also [download it yourself](https://github.com/seahboonsiew/pyspark-csv) and place it in some directory.
 > 
-> This module also depends on the `dateutils` module, which typically doesn't ship with Python. It is already installed in the VirtualBox appliance. To install it on your own machine, run the following from a terminal window:
+> This module also depends on the `dateutils` module, which typically doesn't ship with Python. It is already installed in the appliance. To install it on your own machine, run the following from a terminal window:
 
 ```
 sudo easy_install dateutils
@@ -32,9 +32,9 @@ To import `pyspark_csv`, you'll need the following snippet of code that adds its
 
 ```python
 import sys
-sys.path.append('/home/vagrant/Downloads')   # replace as necessary
+sys.path.append('/home/ubuntu/externals')   # replace as necessary
 import pyspark_csv
-sc.addFile('/home/vagrant/Downloads/pyspark_csv.py')    # ditto
+sc.addFile('/home/ubuntu/externals/pyspark_csv.py')    # ditto
 ```
 
 Next, load the `prop-prices.csv` file as an RDD, and use the `csvToDataFrame` function from the `pyspark_csv` module to create a `DataFrame` and register it as a temporary table so that you can run SQL queries:
@@ -44,7 +44,7 @@ columns = ['id', 'price', 'date', 'zip', 'type', 'new', 'duration', 'PAON',
            'SAON', 'street', 'locality', 'town', 'district', 'county', 'ppd',
            'status']
 
-rdd = sc.textFile("file:///home/vagrant/data/prop-prices.csv")
+rdd = sc.textFile("file:///home/ubuntu/data/prop-prices.csv")
 df = pyspark_csv.csvToDataFrame(sqlContext, rdd, columns=columns)
 df.registerTempTable("properties")
 df.persist()
@@ -92,7 +92,7 @@ sqlContext.sql("""select   year(date) as yr, month(date) as mth, avg(price)
 
 Bonus: use the Python `matplotlib` module to plot the property price changes month-over-month across the entire dataset.
 
-> The `matplotlib` module is installed in the instructor-provided VirtualBox appliance. For your own system, follow the [installation instructions](http://matplotlib.org/users/installing.html).
+> The `matplotlib` module is installed in the instructor-provided appliance. However, there is no X environment, so you will not be able to view the actual plot. For your own system, follow the [installation instructions](http://matplotlib.org/users/installing.html).
 
 **Solution**:
 
@@ -101,10 +101,10 @@ monthPrices = sqlContext.sql("""select   year(date), month(date), avg(price)
                                 from     properties
                                 group by year(date), month(date)
                                 order by year(date), month(date)""").collect()
-import matplotlib
-values = map(lambda row: row._c2)
+import matplotlib.pyplot as plt
+values = map(lambda row: row._c2, monthPrices)
 plt.rcdefaults()
-plt.scatter(xrange(0,len(values[0])), values[1])
+plt.scatter(xrange(0,len(values)), values)
 plt.show()
 ```
 

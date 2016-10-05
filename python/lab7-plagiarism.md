@@ -47,7 +47,7 @@ def clean(doc):
     return filter(lambda w: len(w) > 2,
                   map(lambda s: s.lower(), re.split(r'\W+', doc)))
 
-essays = sc.wholeTextFiles("file:///home/vagrant/data/essays/*.txt")    \
+essays = sc.wholeTextFiles("file:///home/ubuntu/data/essays/*.txt")    \
            .mapValues(clean)                                            \
            .cache()
 essayNames = essays.map(lambda (filename, contents): filename).collect()
@@ -74,7 +74,7 @@ tfidf = idf.transform(tf)
 Now that you have the TF-IDF vectors for the entire dataset, you can compute the similarity of a new document, `candidate`, to all the existing documents. To do so, you need to find that document's TF-IDF vector, and then find the cosine similarity of that vector with all the existing TF-IDF vectors:
 
 ```python
-candidate = clean(open('/home/vagrant/data/essays/candidate').read())
+candidate = clean(open('/home/ubuntu/data/essays/candidate').read())
 candidateTf = hashingTF.transform(candidate)
 candidateTfIdf = idf.transform(candidateTf)
 similarities = tfidf.map(lambda v: v.dot(candidateTfIdf) /

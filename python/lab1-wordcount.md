@@ -2,9 +2,9 @@
 
 In this lab, you will become acquainted with your Spark installation, and run your first Spark job -- a multi-file word count.
 
-> The instructor should have explained how to install Spark on your machine. One option is to use the instructor's VirtualBox appliance, which you can import in the VirtualBox application. The appliance has Spark 1.6.1 installed, and has all the necessary data files for this and subsequent exercises in the `~/data` directory.
+> The instructor should have explained how to install Spark on your machine. One option is to use the instructor's appliance, which you can access through any web browser. The appliance has Spark 1.6.2 installed, and has all the necessary data files for this and subsequent exercises in the `~/data` directory.
 > 
-> Alternatively, you can install Spark yourself. Download it from [spark.apache.org](http://spark.apache.org/downloads.html) -- make sure to select a prepackaged binary version, such as [Spark 1.6.1 for Hadoop 2.6](http://www.apache.org/dyn/closer.lua/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz). Extract the archive to some location on your system. Then, download the [data files](https://www.dropbox.com/s/un1zr1jg6buoe3a/data.zip?dl=0) for the labs and place them in `~/data`.
+> Alternatively, you can install Spark yourself. Download it from [spark.apache.org](http://spark.apache.org/downloads.html) -- make sure to select a prepackaged binary version, such as [Spark 1.6.1 for Hadoop 2.6](http://www.apache.org/dyn/closer.lua/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz). Extract the archive to some location on your system. Then, download the [data files](../data.zip) for the labs and place them in `~/data`.
 > 
 > **NOTE**: If you install Spark on Windows (not in a virtual machine), many things are going to be more difficult. Ask the instructor for advice if necessary.
 
@@ -65,7 +65,7 @@ In this lab, you are going to use the `sc.textFile` method. To figure out what i
 help(sc.textFile)
 ```
 
-Note that even though it's not mentioned in the short documentation snippet you just read, the `textFile` method can also work with a directory path or a wildcard filter such as `/home/vagrant/data/*.txt`.
+Note that even though it's not mentioned in the short documentation snippet you just read, the `textFile` method can also work with a directory path or a wildcard filter such as `/home/ubuntu/data/*.txt`.
 
 > Of course, if you are not using the instructor-supplied appliance, your `data` directory might reside in a different location.
 
@@ -74,7 +74,7 @@ Your first task is to print out the number of lines in all the text files, combi
 **Solution**:
 
 ```python
-sc.textFile("/home/vagrant/data/*.txt").count()
+sc.textFile("/home/ubuntu/data/*.txt").count()
 ```
 
 Great! Your next task is to implement the actual word-counting program. You've already seen one in class, and now it's time for your own. Print the top 10 most frequent words in the provided books.
@@ -82,7 +82,7 @@ Great! Your next task is to implement the actual word-counting program. You've a
 **Solution**:
 
 ```python
-lines = sc.textFile("/home/vagrant/data/*.txt")
+lines = sc.textFile("/home/ubuntu/data/*.txt")
 words = lines.flatMap(lambda line: line.split())
 pairs = words.map(lambda word: (word, 1))
 freqs = pairs.reduceByKey(lambda a, b: a + b)

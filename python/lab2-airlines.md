@@ -68,7 +68,7 @@ Next, create an RDD based on the `airline-delays.csv` file, and map each line of
 **Solution**:
 
 ```python
-rdd = sc.textFile("file:////home/vagrant/data/airline-delays.csv")
+rdd = sc.textFile("file:////home/ubuntu/data/airline-delays.csv")
 headerline = rdd.first()
 fieldnames = filter(lambda field: len(field) > 0,
                 map(lambda field: field.strip('"'), headerline.split(',')))

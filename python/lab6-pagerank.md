@@ -70,7 +70,7 @@ Finally, when your loop is done, display the 10 highest-ranked movies and their 
 
 ```python
 # links is RDD of (movie, [referenced movies])
-links = sc.textFile("file:///home/vagrant/data/processed-movie-links.txt") \
+links = sc.textFile("file:///home/ubuntu/data/processed-movie-links.txt") \
           .map(lambda line: line.split("-->"))                             \
           .map(lambda (a, b): (a.strip(), b.strip()))                      \
           .distinct()                                                      \
@@ -109,7 +109,7 @@ The PageRank algorithm we implemented in the previous task is not very efficient
 
 Spark ships with a native graph algorithm library called GraphX. Unfortunately, it doesn't yet have a Python binding -- you can only use it from Scala and Java. But we're not going to let that stop us!
 
-Navigate to the Spark installation directory (`~/spark` in the VirtualBox appliance) and run `bin/spark-shell`. This is the Spark Scala REPL, which is very similar to PySpark, except it uses Scala. First, you're going to need a couple of import statements:
+Navigate to the Spark installation directory (`~/spark` in the appliance) and run `bin/spark-shell`. This is the Spark Scala REPL, which is very similar to PySpark, except it uses Scala. First, you're going to need a couple of import statements:
 
 ```scala
 import org.apache.spark._
@@ -121,7 +121,7 @@ Next, load the graph edges from the supplied `~/data/movie-edges.txt` file:
 
 ```scala
 val graph = GraphLoader.edgeListFile(sc,
-    "file:///home/vagrant/data/movie-edges.txt")
+    "file:///home/ubuntu/data/movie-edges.txt")
 ```
 
 This file was generated from the same dataset, but it has a format that GraphX natively supports. You can check out the format by running the following commands:
@@ -163,7 +163,7 @@ val pageRank = PageRank.runUntilConvergence(graph, 0.0001).vertices.map(
 Next, load the vertices file that specifies the movie title for each id:
 
 ```scala
-val titles = sc.textFile("file:///home/vagrant/data/movie-vertices.txt").map(
+val titles = sc.textFile("file:///home/ubuntu/data/movie-vertices.txt").map(
     line => {
         val parts = line.split(" ");
         (parts(0).toInt, parts.drop(1).mkString(" "))

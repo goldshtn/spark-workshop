@@ -2,7 +2,7 @@
 
 In this lab, you will use Spark Streaming to analyze Twitter statuses for civil unrest and map them by the place they are coming from. This lab is based on Will Farmer's work, ["Twitter Civil Unrest Analysis with Apache Spark"](http://will-farmer.com/twitter-civil-unrest-analysis-with-apache-spark.html). It is a simplified version that doesn't have as many external dependencies.
 
-> **NOTE**: If you are running this lab on your system (and not the instructor-provided VirtualBox appliance), you will need to install a couple of Python modules in case you don't have them already. Run the following commands from a terminal window:
+> **NOTE**: If you are running this lab on your system (and not the instructor-provided appliance), you will need to install a couple of Python modules in case you don't have them already. Run the following commands from a terminal window:
 
 ```
 sudo easy_install requests

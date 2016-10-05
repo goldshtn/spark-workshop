@@ -25,7 +25,7 @@ Create a `DataFrame` from the JSON file so that its schema is automatically infe
 **Solution**:
 
 ```python
-companies = sqlContext.read.json("file:///home/vagrant/data/companies.json")
+companies = sqlContext.read.json("file:///home/ubuntu/data/companies.json")
 companies.printSchema()
 companies.registerTempTable("companies")
 ```
@@ -61,7 +61,9 @@ Finally, let's try to figure out the relationship between the company's total fu
 **Solution**:
 
 ```python
- sqlContext.registerFunction("total_funding", lambda investments: sum(
+from pyspark.sql.types import IntegerType
+
+sqlContext.registerFunction("total_funding", lambda investments: sum(
       [inv.funding_round.raised_amount or 0 for inv in investments]
     ), IntegerType())
 ```
