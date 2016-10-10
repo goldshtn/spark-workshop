@@ -6,7 +6,7 @@ ___
 
 #### Task 1: Inspecting the Data
 
-This dataset ships with two files (in the `~/data` directory, if you are using the instructor-provided VirtualBox appliance). First, the `airline-format.html` file contains a brief description of the dataset, and the various data fields. For example, the `ArrDelay` field is the flight's arrival delay, in minutes. Second, the `airline-delays.csv` file is a comma-separated collection of flight records, one record per line.
+This dataset ships with two files (in the `~/data` directory, if you are using the instructor-provided appliance). First, the `airline-format.html` file contains a brief description of the dataset, and the various data fields. For example, the `ArrDelay` field is the flight's arrival delay, in minutes. Second, the `airline-delays.csv` file is a comma-separated collection of flight records, one record per line.
 
 Inspect the fields described in the `airline-format.html` file. Make a note of fields that describe the flight, its origin and destination airports, and any delays encountered on departure and arrival.
 
@@ -105,7 +105,7 @@ flights.filter(lambda f: f['ArrDelay'] != '')                      \
        .combineByKey(lambda d: (d, 1),
                      lambda s, d: (s[0]+d, s[1]+1),
                      lambda s1, s2: (s1[0]+s2[0], s1[1]+s2[1]))    \
-       .map(lambda (k, (s, c)): (k, s/float(c)))
+       .map(lambda (k, (s, c)): (k, s/float(c)))                   \
        .collect()
 ```
 
