@@ -48,7 +48,7 @@ ___
 
 #### Task 3: Looking for Civil Unrest
 
-You're now ready to run the program and look for civil unrest! From a terminal window, navigate to the Spark installation directory (`~/spark` on the VirtualBox appliance) and run:
+You're now ready to run the program and look for civil unrest! From a terminal window, navigate to the Spark installation directory (`~/spark` on the appliance) and run:
 
 ```
 bin/spark-submit ~/data/analysis.py
