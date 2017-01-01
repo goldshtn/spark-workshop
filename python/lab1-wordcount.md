@@ -4,7 +4,7 @@ In this lab, you will become acquainted with your Spark installation, and run yo
 
 > The instructor should have explained how to install Spark on your machine. One option is to use the instructor's appliance, which you can access through any web browser. The appliance has Spark 1.6.2 installed, and has all the necessary data files for this and subsequent exercises in the `~/data` directory.
 > 
-> Alternatively, you can install Spark yourself. Download it from [spark.apache.org](http://spark.apache.org/downloads.html) -- make sure to select a prepackaged binary version, such as [Spark 1.6.1 for Hadoop 2.6](http://www.apache.org/dyn/closer.lua/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz). Extract the archive to some location on your system. Then, download the [data files](../data.zip) for the labs and place them in `~/data`.
+> Alternatively, you can install Spark yourself. Download it from [spark.apache.org](http://spark.apache.org/downloads.html) -- make sure to select a prepackaged binary version, such as [Spark 2.1.0 for Hadoop 2.7](http://www.apache.org/dyn/closer.lua/spark/spark-2.1.0/spark-2.1.0-bin-hadoop2.7.tgz). Extract the archive to some location on your system. Then, download the [data files](../data.zip) for the labs and place them in `~/data`.
 > 
 > **NOTE**: If you install Spark on Windows (not in a virtual machine), many things are going to be more difficult. Ask the instructor for advice if necessary.
 
@@ -45,11 +45,11 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /__ / .__/\_,_/_/ /_/\_\   version 1.6.1
+   /__ / .__/\_,_/_/ /_/\_\   version 2.1.0
       /_/
 
-Using Python version 2.7.6 (default, Jun 22 2015 17:58:13)
-SparkContext available as sc, HiveContext available as sqlContext.
+Using Python version 2.7.10 (default, Oct 21 2015 09:09:19)
+SparkSession available as 'spark'.
 >>>
 ```
 

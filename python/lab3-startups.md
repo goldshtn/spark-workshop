@@ -18,14 +18,14 @@ ___
 
 #### Task 2: Parsing the Data
 
-Open a PySpark shell (by running `bin/pyspark` from the Spark installation directory in a terminal window). Note that you have access to a pre-initialized `SQLContext` object named `sqlContext`.
+Open a PySpark shell (by running `bin/pyspark` from the Spark installation directory in a terminal window). Note that you have access to a pre-initialized `SparkSession` object named `spark`.
 
 Create a `DataFrame` from the JSON file so that its schema is automatically inferred, print out the resulting schema, and register it as a temporary table called "companies".
 
 **Solution**:
 
 ```python
-companies = sqlContext.read.json("file:///home/ubuntu/data/companies.json")
+companies = spark.read.json("file:///home/ubuntu/data/companies.json")
 companies.printSchema()
 companies.registerTempTable("companies")
 ```
@@ -39,7 +39,7 @@ First, let's talk about the money; figure out what the average acquisition price
 **Solution**:
 
 ```python
-sqlContext.sql("select avg(acquisition.price_amount) from companies").first()
+spark.sql("select avg(acquisition.price_amount) from companies").first()
 ```
 
 Not too shabby. Let's get some additional detail -- print the average acquisition price grouped by number of years the company was active.
@@ -47,7 +47,7 @@ Not too shabby. Let's get some additional detail -- print the average acquisitio
 **Solution**:
 
 ```python
-sqlContext.sql(
+spark.sql(
     """select   acquisition.acquired_year-founded_year as years_active,
                 avg(acquisition.price_amount) as acq_price
        from     companies
@@ -63,7 +63,7 @@ Finally, let's try to figure out the relationship between the company's total fu
 ```python
 from pyspark.sql.types import IntegerType
 
-sqlContext.registerFunction("total_funding", lambda investments: sum(
+spark.udf.register("total_funding", lambda investments: sum(
       [inv.funding_round.raised_amount or 0 for inv in investments]
     ), IntegerType())
 ```
@@ -73,7 +73,7 @@ Test your function by retrieving the total funding for a few companies, such as 
 **Solution**:
 
 ```python
-sqlContext.sql(
+spark.sql(
     """select avg(acquisition.price_amount/total_funding(investments))
        from   companies
        where  acquisition.price_amount is not null

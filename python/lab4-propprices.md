@@ -18,9 +18,9 @@ ___
 
 #### Task 2: Importing the Data
 
-In a previous lab, we used the Python `csv` module to parse CSV files. However, because we're working with structured data, the Spark SQL framework can be easier to use and provide better performance. We are going to use the `pyspark_csv` third-party open source module to create a `DataFrame` from an RDD of CSV lines.
+In a previous lab, we used the Python `csv` module to parse CSV files. However, because we're working with structured data, the Spark SQL framework can be easier to use and provide better performance. We are going to use the `spark.read.csv` to create a `DataFrame` from an RDD of CSV lines.
 
-> **NOTE**: The `pyspark_csv.py` file is in the `~/externals` directory on the appliance. You can also [download it yourself](https://github.com/seahboonsiew/pyspark-csv) and place it in some directory.
+> **NOTE**: The `pyspark_csv.py` file, a third-party package for loading csv files for Spark 1.x, is in the `~/externals` directory on the appliance. You can also [download it yourself](https://github.com/seahboonsiew/pyspark-csv) and place it in some directory.
 > 
 > This module also depends on the `dateutils` module, which typically doesn't ship with Python. It is already installed in the appliance. To install it on your own machine, run the following from a terminal window:
 
@@ -28,7 +28,7 @@ In a previous lab, we used the Python `csv` module to parse CSV files. However, 
 sudo easy_install dateutils
 ```
 
-To import `pyspark_csv`, you'll need the following snippet of code that adds its path to the module search path, and adds it to the Spark executors so they can find it as well:
+To import `pyspark_csv` (if needed in Spark 1.x, for Spark 2.x, skip this step), you'll need the following snippet of code that adds its path to the module search path, and adds it to the Spark executors so they can find it as well:
 
 ```python
 import sys
@@ -44,8 +44,9 @@ columns = ['id', 'price', 'date', 'zip', 'type', 'new', 'duration', 'PAON',
            'SAON', 'street', 'locality', 'town', 'district', 'county', 'ppd',
            'status']
 
-rdd = sc.textFile("file:///home/ubuntu/data/prop-prices.csv")
-df = pyspark_csv.csvToDataFrame(sqlContext, rdd, columns=columns)
+df = spark.read.option("inferSchema", "true").option("header", "false").csv("file:///home/ubuntu/data/prop-prices.csv")
+selectExpr = map(lambda (i, c): "_c%d as %s" % (i, c), enumerate(columns))
+df = df.selectExpr(selectExpr)
 df.registerTempTable("properties")
 df.persist()
 ```
@@ -59,7 +60,7 @@ First, let's do some basic analysis on the data. Find how many records we have p
 **Solution**:
 
 ```python
-sqlContext.sql("""select   year(date), count(*)
+spark.sql("""select   year(date), count(*)
                   from     properties
                   group by year(date)
                   order by year(date)""").collect()
@@ -70,7 +71,7 @@ All right, so everyone knows that properties in London are expensive. Find the a
 **Solution**:
 
 ```python
-sqlContext.sql("""select   county, avg(price)
+spark.sql("""select   county, avg(price)
                   from     properties
                   group by county
                   order by avg(price) desc
@@ -82,7 +83,7 @@ Is there any trend for property sales during the year? Find the average property
 **Solution**:
 
 ```python
-sqlContext.sql("""select   year(date) as yr, month(date) as mth, avg(price)
+spark.sql("""select   year(date) as yr, month(date) as mth, avg(price)
                   from     properties
                   where    county='GREATER LONDON'
                   and      year(date) >= 2015
@@ -97,7 +98,7 @@ Bonus: use the Python `matplotlib` module to plot the property price changes mon
 **Solution**:
 
 ```python
-monthPrices = sqlContext.sql("""select   year(date), month(date), avg(price)
+monthPrices = spark.sql("""select   year(date), month(date), avg(price)
                                 from     properties
                                 group by year(date), month(date)
                                 order by year(date), month(date)""").collect()

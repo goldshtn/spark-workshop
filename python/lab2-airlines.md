@@ -1,3 +1,7 @@
+## Please Read before proceeding
+ **NOTE**: This lab offers suggets a way to load and parse CSV files, using python library. In Spark 2.x, the [spark-csv package](https://github.com/databricks/spark-csv) has been integrated into the Spark code-base. You can easily load CSV files using SparkSession (spark.read.csv). This lab will only be relevent for Spark 1.x
+
+
 ### Lab 2: Flight Delay Analysis
 
 In this lab, you will analyze a real-world dataset -- information about US flight delays in January 2016, courtesy of the United States Department of Transportation. You can [download additional datasets](http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time) later. Here's another example you might find interesting -- [US border crossing/entry data per port of entry](http://transborder.bts.gov/programs/international/transborder/TBDR_BC/TBDR_BCQ.html).
